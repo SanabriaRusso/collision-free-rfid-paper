@@ -1,0 +1,950 @@
+
+%% bare_jrnl.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% see http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.7 or later) with an IEEE journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE!
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
+%%*************************************************************************
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[journal]{IEEEtran}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+
+% to add comments in different colors (added by Azadeh)
+\usepackage[usenames]{color}
+\usepackage{lscape}
+\usepackage{soul}
+\newcommand{\blue}[1]{{\color{blue} #1}}
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\black}[1]{{\color{black} #1}}
+
+\newcommand{\Az}[1]{{\color{blue}{#1}}}
+%\newcommand{\AzCom}[1]{{\it \color{magenta} [#1]}}
+\newcommand{\AzCom}[1]{}
+%\newcommand{\AzDel}[1]{{\color{red} \st{#1}}}
+%\newcommand{\AzDel}[1]{{\color{Gray}{\{#1\}}}}
+\newcommand{\AzDel}[1]{}
+
+\newdimen\snellbaselineskip
+\newdimen\snellskip
+\snellskip=1.5ex
+\snellbaselineskip=\baselineskip
+\def\srule{\omit\kern.5em\vrule\kern-.5em}
+\newbox\bigstrutbox
+\setbox\bigstrutbox=\hbox{\vrule height14.5pt depth9.5pt width0pt}
+\def\bigstrut{\relax\ifmmode\copy\bigstrutbox\else\unhcopy\bigstrutbox\fi}
+\def\middlehrule#1#2{\noalign{\kern-\snellbaselineskip\kern\snellskip}
+&\multispan#1\strut\hrulefill
+&\omit\hbox to.5em{\hrulefill}\vrule
+height \snellskip\kern-.5em&\multispan#2\hrulefill\cr}
+
+
+\makeatletter
+\def\bordermatrix#1{\begingroup \m@th
+  \@tempdima 8.75\p@
+  \setbox\z@\vbox{%
+    \def\cr{\crcr\noalign{\kern2\p@\global\let\cr\endline}}%
+    \ialign{$##$\hfil\kern2\p@\kern\@tempdima&\thinspace\hfil$##$\hfil
+      &&\quad\hfil$##$\hfil\crcr
+      \omit\strut\hfil\crcr\noalign{\kern-\snellbaselineskip}%
+      #1\crcr\omit\strut\cr}}%
+  \setbox\tw@\vbox{\unvcopy\z@\global\setbox\@ne\lastbox}%
+  \setbox\tw@\hbox{\unhbox\@ne\unskip\global\setbox\@ne\lastbox}%
+  \setbox\tw@\hbox{$\kern\wd\@ne\kern-\@tempdima\left(\kern-\wd\@ne
+    \global\setbox\@ne\vbox{\box\@ne\kern2\p@}%
+    \vcenter{\kern-\ht\@ne\unvbox\z@\kern-\snellbaselineskip}\,\right)$}%
+  \null\;\vbox{\kern\ht\@ne\box\tw@}\endgroup}
+\makeatletter
+
+\makeatletter
+\def\bordermatrix#1{\begingroup \m@th
+  \@tempdima 8.75\p@
+  \setbox\z@\vbox{%
+    \def\cr{\crcr\noalign{\kern2\p@\global\let\cr\endline}}%
+    \ialign{$##$\hfil\kern2\p@\kern\@tempdima&\thinspace\hfil$##$\hfil
+      &&\quad\hfil$##$\hfil\crcr
+      \omit\strut\hfil\crcr\noalign{\kern-\snellbaselineskip}%
+      #1\crcr\omit\strut\cr}}%
+  \setbox\tw@\vbox{\unvcopy\z@\global\setbox\@ne\lastbox}%
+  \setbox\tw@\hbox{\unhbox\@ne\unskip\global\setbox\@ne\lastbox}%
+  \setbox\tw@\hbox{$\kern\wd\@ne\kern-\@tempdima\left(\kern-\wd\@ne
+    \global\setbox\@ne\vbox{\box\@ne\kern2\p@}%
+    \vcenter{\kern-\ht\@ne\unvbox\z@\kern-\snellbaselineskip}\,\right)$}%
+  \null\;\vbox{\kern\ht\@ne\box\tw@}\endgroup}
+\makeatletter
+
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[journal]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+% epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\usepackage[tight,footnotesize]{subfigure}
+% subfigure.sty was written by Steven Douglas Cochran. This package makes it
+% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
+% work, it is a good idea to load it with the tight package option to reduce
+% the amount of white space around the subfigures. subfigure.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
+% subfigure.sty has been superceeded by subfig.sty.
+
+
+
+%\usepackage[caption=false]{caption}
+%\usepackage[font=footnotesize]{subfig}
+% subfig.sty, also written by Steven Douglas Cochran, is the modern
+% replacement for subfigure.sty. However, subfig.sty requires and
+% automatically loads Axel Sommerfeldt's caption.sty which will override
+% IEEEtran.cls handling of captions and this will result in nonIEEE style
+% figure/table captions. To prevent this problem, be sure and preload
+% caption.sty with its "caption=false" package option. This is will preserve
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later
+% (recommended due to many improvements over 1.2) of subfig.sty supports
+% the caption=false option directly:
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+% The latest version and documentation of caption.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Documentation is contained in the stfloats.sty comments as well as in the
+% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
+% does not allow \baselineskip to stretch. Authors submitting work to the
+% IEEE should note that IEEE rarely uses double column equations and
+% that authors should try to avoid such use. Do not be tempted to use the
+% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
+% not format its papers in such ways.
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley and Jeff Goldberg.
+% This package may be useful when used in conjunction with IEEEtran.cls'
+% captionsoff option. Some IEEE journals/societies require that submissions
+% have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.3.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% For subfigure.sty:
+% \let\MYorigsubfigure\subfigure
+% \renewcommand{\subfigure}[2][\relax]{\MYorigsubfigure[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat/subfig command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/endfloat/
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a
+% page by themselves.
+
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
+% Read the url.sty source comments for usage information. Basically,
+% \url{my_url_here}.
+
+\usepackage{psfrag}
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+
+\def\Abf{{\mathbf{A}}}
+\def\Pbf{{\mathbf{P}}}
+\newcommand{\pr}[1]{\Pr \left\{#1\right\}}
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{On the Prevention of Collisions in EPC Gen2 RFID Contention}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+\author{Joan~Melia, %~\IEEEmembership{Member,~IEEE,}
+        and~Name~Surname,~\IEEEmembership{Senior~Member,~IEEE}% <-this % stops a space
+\thanks{The authors are with Universitat Pompeu Fabra.
+Roc Boronat 138, 08018 Barcelona, Catalunya, Spain.
+E-mail: joan.melia@upf.edu
+This paper has been submitted to an IEEE journal.
+}
+}
+
+% note the % following the last \IEEEmembership and also \thanks -
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+%
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+\markboth{Journal of \LaTeX\ Class Files,~Vol.~6, No.~1, January~2007}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+%
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2007 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+
+\begin{abstract}
+In this paper, the problem of assigning channel slots to a number of contending stations is modeled as a Constraint Satisfaction Problem (CSP).
+A learning MAC protocol that uses deterministic backoffs after successful transmissions is used as a decentralized solver for the CSP.
+The convergence process of the solver is modeled by an absorbing Markov chain (MC), and analytical, closed-form expressions for its transition probabilities are derived.
+Using these, the expected number of steps required to reach a solution is found.
+The analysis is validated by means of simulations and the model is extended to account for the presence of channel errors.
+The results are applicable in various resource allocation scenarios in wireless networks.
+
+%\boldmath
+%In this paper we use a Markov Chain to model a simple solver for Decentralized Constrain Satisfaction problems.
+%We provide closed-form expressions to compute the transition probabilities and the transition probabilities matrix can then be used to determine the expected number of steps that the system requires to converge to a solution.
+%We use a protocol to allocate channel slots to contending stations as an illustrating example, and extend our model to contemplate the possibility of channel errors.
+%The model is validated by means of simulation and we show that it can be easily extended to account for the presence of errors.
+\end{abstract}
+% IEEEtran.cls defaults to using nonbold math in the Abstract.
+% This preserves the distinction between vectors and scalars. However,
+% if the journal you are submitting to favors bold math in the abstract,
+% then you can use LaTeX's standard command \boldmath at the very start
+% of the abstract to achieve this. Many IEEE journals frown on math
+% in the abstract anyway.
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Medium Access Control, decentralized constraint satisfaction solver, learning MAC protocol
+\end{IEEEkeywords}
+
+
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps.
+%
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+%
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+%
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+%
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+
+% \IEEEPARstart{I}{n} this paper we discuss a family of protocols that can be used for radio resource assignment in wireless networks.
+% The problem of assigning resources in a distributed fashion is defined as a Decentralized Constraint Satisfaction (DCS) problem \cite{duffy2011dcs}.
+% We consider a particular solver for this family of problems that works iteratively, in several rounds, to find a solution to the problem.
+
+% The solver performs a stochastic search until it converges to a solution.
+% You must have at least 2 lines in the paragraph with the drop letter
+% (should never be an issue)
+
+\IEEEPARstart{S}{ince} the inception of wireless local area networks (WLANs), random medium access mechanisms have played a key role in arbitrating access to shared channels. The core principles of the medium access control (MAC) that were introduced in the first release of the IEEE 802.11 standard are still valid today \cite{IEEE80211-IEEESTD2007}. The contenders for the channels use carrier sense to avoid interrupting ongoing transmissions. Until recently, slotted time combined with a random backoff have been used to reduce the chances that two stations simultaneously start a transmission. However, it was pointed out recently that the random choice of the backoff value is not necessary after successful transmissions \cite{barcelo2008lba}.
+In fact, if all the nodes that have successfully transmitted choose a common deterministic backoff value for their next transmission, the chances of collisions are reduced, since in their next transmission they may only collide with the remaining unsuccessful nodes. Furthermore, under certain conditions, a collision-free operation can be reached and maintained.
+
+The idea of using a deterministic backoff after successful transmissions has been explored in more detail in, e.g., \cite{he2009srb,barcelo2011tcf,fang2011dlm,barcelo2010fcc}.
+The goal of this class of protocols is to distributively build a collision-free schedule which can then repeat periodically without further collisions, as long as the network does not change. This is equivalent to the decentralized assignment of stations to slots within one period of the schedule in such a way that no slot is assigned to more than one station. Such an assignment is obtainable if the number of contending stations does not exceed the number of slots in one period of the schedule. We are interested in forecasting the expected number of rounds required to reach a collision-free assignment.
+
+
+Similar problems can be found in other areas of networking where limited resources need to be distributed among a group of stations. Examples of such resources include channel time slots \cite{barcelo2008lba}, frequency channels \cite{duffy2011dcs}, and code division multiple access scramble codes \cite{checco2012scs}.
+
+In \cite{duffy2011dcs}, a general framework is presented that encompasses problems such as graph coloring, channel assignment to WLANs cells, the search for feasible inter-flow codes in network coding, and the construction of collision-free schedules in CSMA networks.
+This framework consists in modeling the resource-assignment problem as a Constraint Satisfaction Problem (CSP) \cite{tsang1993fcs}.
+When the nodes that participate in the CSP cannot communicate with one another to solve the problem, a decentralized approach is required.
+Decentralized solvers are different from distributed solvers \cite{yokoo2000adc}, which require message exchange among the participating nodes.
+The concept of decentralized CSP solvers is very recent and is yet to be explored in depth.
+In \cite{duffy2011dcs}, a decentralized solver for this CSP is presented and analyzed, and a bound on the convergence time of the solver is found.
+
+
+In this work, we focus on analyzing a MAC protocol that uses deterministic backoffs after successful transmissions, however, our results are applicable for many other distributed resource-allocation problems. Similarly to \cite{duffy2011dcs}, we model the channel access problem as a CSP for which the aforementioned protocol serves as a decentralized solver. To calculate the expected number of rounds the solver requires to reach a solution, we model the convergence process using an absorbing Markov chain (MC). The first contribution of this paper is the derivation of closed-form expressions for transition probabilities of the absorbing MC, which are then used to calculate the expected convergence time of the solver. The second contribution is the adaptation of the model to an environment in which errors can occur. 
+
+\section{System Model and the Corresponding CSP}
+
+We consider a wireless network in which channel time is slotted.
+The slots are grouped in rounds, and each round contains $B$ consecutive slots.
+Our focus is on the distributed assignment of $N$ contending wireless stations to the $B$ channel time slots per round.
+In each round, each stations randomly selects one of the $B$ slots in the round.
+In each slot a single transmission can be completed and acknowledged.
+A station succeeds if the slot it has chosen is not selected by any other station, in which case its transmission is acknowledged in the same slot.
+If two or more stations pick the same slot, all stations involved will suffer a collision, in which case no acknowledgment will be received.
+
+\subsection{The Constraint Satisfaction Problem}
+A CSP is simply a problem consisting of a set of variables whose value must satisfy a set of constraints. Adopting the notation from \cite{duffy2011dcs}, we consider $N$ variables, \mbox{$\mathbf{x} := (x_1,\dots,x_N)$}, with $x_i \in \mathbf{B}=\left\{1, \dots, B \right\}, \forall i $, and $M$ clauses, $\left\{ \Phi_1(\mathbf{x}),\dots,\Phi_M(\mathbf{x}) \right\}$, that are Boolean functions.
+The $M$ clauses represent the constraints and take a value equal to 1 if the constraint is satisfied and 0 otherwise.
+An assignment $\mathbf{x}$ is a solution to the problem if all the constraints are satisfied.
+
+For our system model, the variables $\{x_i\}_{i=1}^{N}$ in the corresponding CSP are the slots chosen by the $N$ contending wireless stations from the set of available slots $\mathbf{B}$ in every round. There is one clause per pair of variables evaluating if they have the same value or not. The clause will return 0 if the two participating stations have selected the same slot (i.e., a collision) and returns 1 otherwise.
+
+\subsection{The Decentralized Solver}
+
+Here we describe a protocol that distributively solves the problem posed above, whenever a solution exists. The contention is organized in transmission rounds that contain $B$ transmission slots. In every round, each of the $N$ stations transmit exactly once. A solution to the problem is an assignment in which no slot contains more than one wireless stations. The protocol describes how the stations pick their transmission slots in each round, taking into account that each station is only aware of the outcome of its own transmission in the previous round.
+
+The protocol works as follows. In the first round, each station randomly and independently picks one of the $B$ possible slots in the round. If the transmission is successful, the station will pick exactly the same slot in the next round. Otherwise, it will again pick one of the $B$ slots randomly. This process repeats until all stations successfully transmit in the same round, from which point on, all stations will transmit periodically and no collisions will occur. The operation of this protocol is illustrated in Fig.~\ref{fig:csma_eca_compact} for five consecutive rounds. A collision-free solution is reached in the fourth round, after which the schedule is repeated endlessly without collisions. 
+
+This protocol is a simplified version of a variant of CSMA/CA, called CSMA with enhanced collision avoidance (CSMA/ECA), as detailed in, e.g., \cite{barcelo2008lba,he2009srb,barcelo2009tpc,fang2011dlm}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=2.5in]{figures/csma_eca_compact}
+  \caption{CSMA/ECA contention}
+  \label{fig:csma_eca_compact}
+\end{figure}
+
+This protocol can be viewed as a distributed solver for the CSP defined in the previous subsection. In the first round, the variables $x_i$ are assigned a value in $\{1,\cdots, B \}$ randomly, with probability $1/B$. Then the constraints are evaluated. Those variables that are involved in unsatisfied constraints take a random value again in the next round, while the rest keep the same value as in the previous round. When a solution is reached, all  variables keep the same value. This solver is, in fact, an instance of the parameterized solver in \cite{duffy2011dcs}, with the parameter values set to $a=b=1$. An attractive property of this decentralized solver is that it reaches the solution in finite time, if it exists, and its performance is comparable to the known centralized solvers such as WalkSAT \cite{selman1993lss}.
+
+
+\section{The Markov Chain Model}
+\label{sec:markov_chain}
+
+We are interested in calculating the expected number of rounds required to reach a solution. To this end, we construct a Markov chain to model the behavior of the protocol (or equivalently, the CSP solver). 
+
+By the pigeonhole principle, a solution exists only when $N\leq B$, i.e., when there are at least as many slots in a round as the total number of stations. Considering $N\leq B$ contending stations, the associated MC model has $N+1$ different states, $S_0, \dots, S_N$.
+The system is in state $S_d$ if exactly $d$ stations ($0 \leq d \leq N$) were successful in the previous round and, therefore, will deterministically choose their transmission slot in the current round.
+From the CSP perspective, this is equivalent to saying that there are exactly $d$ variables that were not involved in any constraint that was not satisfied in the previous round.
+
+We are interested in the computation of the transition probability, $p_{d,\delta}^{B,N}$, from one state $S_d$ to another state $S_\delta$, $0 \leq \delta \leq N$. In other words, $p_{d,\delta}^{B,N}$ is the probability of obtaining $\delta$ successful transmissions given $N$ stations and $B$ slots when $d$ of the stations use a deterministically chosen slot while the remaining $N-d$ stations transmit in a randomly chosen slot.
+
+Note that the considered MC is an absorbing MC, as $p_{N,N}^{B,N}=1$. This is because, once a collision-free schedule is found, the same collision-free schedule is repeated in every subsequent step.
+Since the MC is absorbing, the expected number of steps before convergence can be computed if the values of $p_{d,\delta}^{B,N}$ are known \cite{grinstead1997ip}.
+
+\subsection{Calculating the Transition Probabilities}
+To calculate the transition probabilities, we number the stations from $1$ to $N$ and define $A_i$ to be the event that station $i$ succeeds, and the set $\mathbf{A}=\{A_i\}_{i=1}^{N}$ to be the collection of all such events.
+These events are partially overlapping since more than one station may successfully transmit in the same round. For a given $d$, the transition probability $p_{d,\delta}^{B,N}$ is the probability that exactly $\delta$ out of the $N$ events in $\Abf$ happen. As mentioned before, when $d = N$, the system is in the absorbing state $S_N$, and $p_{N,\delta}^{B,N} = 1$, when $\delta = N$, and is zero otherwise. When $d<N$, this probability can be calculated applying a generalized version of the inclusion-exclusion principle (see, e.g., the theorem in Sec. IV.3 of \cite{feller1968ipt}) as follows:
+\begin{equation}
+\label{eq:Pij}
+p^{B,N}_{d,\delta} = \sum_{j=\delta}^{N} (-1)^{j+\delta}\binom{j}{\delta} S(j),
+\end{equation}
+where $S(j)$ is given by
+\begin{equation}
+\label{eq:S_j_def}
+S(j) = \sum_{\forall \Abf^{j} \subseteq \Abf} \pr{\bigcap_{A_i \in \Abf^{j}} A_i}.
+\end{equation}
+Here $\Abf^{j}$ denotes a subset of $\Abf$ that has exactly $j$ elements, i.e., $|\mathbf{A}^{j}|=j$. Therefore, $\pr{\bigcap_{A_i \in \Abf^{j}} A_i}$ is the probability that all the $j$ stations represented in $\Abf^{j}$  successfully transmit. Note that $S(j)$ is a sum of probabilities, but it is not itself a probability.
+%An intuitive explanation of (\ref{eq:Pij}) is presented in Appendix \ref{app:incl-excl-thm}.
+
+% denoted hereafter by $P(\Abf^j_{\cap})$
+For a given set of $j$ tagged stations in $\Abf^{j}$, the probability $\pr{\bigcap_{A_i \in \Abf^{j}} A_i}$ depends on $k$, the number of deterministic stations within the $j$ tagged stations. The $j$ tagged stations succeed if the $j-k$ random stations among them choose unoccupied slots, and the remaining $N-d-(j-k)$ untagged random stations choose slots that are different from the ones selected by the $j$ tagged stations. The first event occurs with probability $$\binom{B-d}{j-k} \frac{(j-k)!}{B^{j-k}},$$ and the second with probability $$\left(\frac{B-j}{B} \right)^{N-d-(j-k)}.$$
+When $j=N$, we have $k=d$, and therefore, there are no untagged random stations, hence the second probability is 1. Consequently, the probability that all of the $j$ stations of $\Abf^{j}$ succeed, given that $k$ of them are deterministic, after some simplification is
+\begin{align}
+\label{eq:pAkj}
+&\pr{\bigcap_{A_i \in \Abf^{j}} A_i} \\
+&~~~~~~~~= \left \{ \begin{array}{lr}
+    \displaystyle \frac{(B-d)!(B-j)^{N-d-(j-k)}}{\left(B-d-(j-k)\right)!~B^{N-d}}, & j < N \\&\\
+    \displaystyle \frac{(B-d)!}{(B-N)!~B^{N-d}}, & j = N
+\end{array}
+\right. \nonumber
+\end{align}
+
+For any given $j$, there are $\binom{d}{k} \binom{N-d}{j-k}$ sets $\Abf^{j}$ with $k$ deterministic stations. Furthermore, the number of deterministic stations, $k$, among the $j$ tagged stations is bounded by
+\begin{align}
+\label{eq:k_bound}
+\max(0,j+d-N) \leq k \leq \min(d,j),
+\end{align}
+since in a set of $j$ nodes, there cannot be more deterministic stations than the total number of deterministic stations ($k \leq d$), or more random stations than the total number of random stations ($j-k \leq N-d$).
+
+
+Using (\ref{eq:S_j_def}), (\ref{eq:pAkj}), and (\ref{eq:k_bound}), $S(j)$ can be calculated as
+\begin{align}
+\label{eq:S_j}
+S(j) = &\sum_{k=\max(0,j+d-N)}^{\min(d,j)}   \binom{d}{k} \binom{N-d}{j-k}\\
+ & ~~~~~~~~~~~~\times \frac{(B-d)!(B-j)^{N-d-(j-k)}}{\left(B-d-(j-k)\right)!~B^{N-d}}, ~~~ j < N \nonumber
+\end{align}
+and for $j=N$,
+\begin{align}
+\label{eq:S_N}
+S(N) = \frac{(B-d)!}{(B-N)!~B^{N-d}}.
+\end{align}
+Finally, the transition probabilities for $d<N$ can be calculated by replacing $S(j)$ in (\ref{eq:Pij}). 
+When $d=0$, i.e., when all the $N$ stations randomly select a slot, this result exactly matches the one obtained in \cite{szpankowski1983asc}.
+
+
+\subsection{Calculating the Number of Steps until Absorption}
+
+To compute the expected number of rounds needed for the solver to reach a solution, we calculate the expected number of transitions that the MC takes to reach the absorbing state $S_N$ (see, e.g., \cite{grinstead1997ip} for the theory behind this calculation).
+
+Let $\Pbf^{B,N}$ be the transition probability matrix of the MC. This matrix is a square matrix of size $N+1$. If we number the rows and columns of $\Pbf^{B,N}$ starting with zero, the element in row $d$ and column $\delta$ is simply $\left[\Pbf^{B,N}\right]_{d,\delta} = p^{B,N}_{d,\delta}$ as in (\ref{eq:Pij}). In this matrix, rows $0$ to $N-1$ represent transitions from the transient states and row $N$ the transitions from the absorbing state. Therefore, $\Pbf^{B,N}$ has the following general form:
+\begin{equation} \label{Eq:Pmat_form}
+%\offinterlineskip
+\Pbf^{B,N} \;= \bordermatrix{
+                       &\hbox{TR}  &\omit\hfil &\hbox{ABS}\cr
+    \hbox{TR}\bigstrut &\mathbf{Q}_{(N \times N)} &\srule     &\mathbf{c}_{(N \times 1)} \cr
+\middlehrule{1}{1}
+    \hbox{ABS}\bigstrut&\mathbf{0}_{(1 \times N)} &\srule & 1}
+\end{equation}
+where $\mathbf{Q}$ is a matrix containing the first $N$ rows and columns of $\Pbf^{B,N}$, from which we calculate the fundamental matrix of the absorbing MC as $\mathbf{N}= (\mathbf{I}_{N \times N}-\mathbf{Q})^{-1}$, where $\mathbf{I}_{N \times N}$ is the $N \times N$ identity matrix.
+The expected number of steps to absorption, if the system starts in state $S_0$, is the sum of all the elements in the first row of $\mathbf{N}$.
+
+\subsection{The Markov Chain in the Presence of Channel Errors}
+
+So far we have not considered the possibility that the channel introduces errors. In presence of channel errors, a transmission may be unsuccessful even if it has not suffered a collision. In fact, after an unsuccessful transmission, a wireless station cannot know whether it has suffered a collision or a channel error, and the response of the protocol will be exactly the same, i.e., moving the station back to the random behavior.
+
+In this case, the probability of moving from the state $S_d$ to the state $S_\delta$ is the probability that $i \in \left[ \delta, N\right]$ stations do not collide, but exactly $i-\delta$ of those stations suffer a channel error, i.e.,
+\begin{equation}
+\label{eq:psiBNepsilon}
+p^{B,N,\epsilon}_{d,\delta} = \sum_{i=\delta}^{N} \binom{i}{\delta} \epsilon^{i-\delta}(1-\epsilon)^\delta p^{B,N}_{d,i}.
+\end{equation}
+where $\epsilon$ is the channel error probability. Note that the resulting MC is no longer absorbing.
+
+\section{Numerical Results}
+\label{sec:numerical_results}
+
+\begin{figure}
+\centering
+\includegraphics[height=6.2cm]{figures/convergence_avg}
+\caption{The analytically computed expectation is compared to simulation averages. Two different values for $B$ have been considered ($B=8$ and $B=16$) and $N$ takes values from 2 to 16.}
+\label{fig:convergence_avg}
+\end{figure}
+
+
+In this section we present simulation results that validate the expressions derived in the previous section.
+The number of slots in each round is set to $B=8$ and $B=16$, and the number of contenders $N$ takes values from 2 to 16.
+The contenders choose the same slot in the case of successful transmission and a random slot if the transmission is unsuccessful.
+
+The first results are for an ideal channel that does not introduce errors.
+We compare the analytically computed expected number of steps to absorption and the average number of steps to reach collision-free operation obtained from 10,000 executions of a custom simulator.\footnote{The two simulators in \emph{C} that we have used and the scripts in \emph{maxima} to compute the expectations derived from the analytical model can be downloaded from \url{https://github.com/jbarcelo/source-paper-mdc} .}
+The results are presented in Fig.~\ref{fig:convergence_avg}.
+
+%To offer further insight on the convergence process, we also compute the 5-th, 25-th, 50-th, 75-th and 95-th percentiles of the number of steps to absorption for the case $B=16$, which are presented in Fig.~\ref{fig:convergence_stats}.
+%These percentiles provide an idea of the distribution of the value of the number steps required to reach collision-free operation.
+%\begin{figure}[h]
+%\centering
+%\includegraphics[height=6.2cm]{figures/convergence_stats}
+%\caption{The 5, 25, 50, 75, and 95 percentiles of the number of steps to convergence obtained from 10,000 simulation runs. $B=16$ and $N$ takes values from 2 to 16.}
+%\label{fig:convergence_stats}
+%\end{figure}
+
+
+%\subsection{Results in the presence of channel errors}
+To validate the expression in (\ref{eq:psiBNepsilon}) we compute the average number of successful transmissions in each step from the MC and compare it with averages obtained from a simulation of 10,000 rounds.
+The results for a channel error probability $\epsilon=0.1$, different numbers of slots ($B$) and different numbers of contenders ($N$) are presented in Fig.~\ref{fig:successful_tx_per_step}.
+
+\begin{figure}[t!!!!]
+\centering
+\includegraphics[height=6.2cm]{figures/successful_tx_per_step}
+\caption{The average number of successful transmissions in every round obtained from simulation is compared to the analytically computed expected values.}
+\label{fig:successful_tx_per_step}
+\end{figure}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We have studied a decentralized CSP solver to assign channel slots to contending stations. With this solver, the system eventually converges to collision-free operation under ideal channel conditions. We have modeled the convergence process as an absorbing MC and have derived closed expressions for the transition probabilities, which are used to compute the expected number of steps required for the system to converge to a solution. We have also considered the presence of channel errors and constructed an MC that accounts for channel errors, and have calculated its transition probabilities. 
+The presented results have been validated by means of simulation. The results can be adapted to various scenarios in wireless networks where a finite number of resources need to be distributively assigned to a number of contending stations.
+
+
+%The stations deterministically choose their transmission slots after successful transmissions.
+%If the transmission is not successful, the station randomly chooses its next transmission slot.
+%The system eventually converges to collision-free operation in ideal channel conditions.
+
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+%\appendices
+%\section{Generalized Inclusion Exclusion Illustration}
+%\label{app:incl-excl-thm}
+%\label{app:theorem}
+%We offer an example of the counting problem in (\ref{eq:Pij})  in which we are interested in computing the probability that exactly $delta$ among the $N$ stations succeed.
+%
+%\begin{figure}
+%\psfrag{A1}[cc][cc]{$A_1$}
+%\psfrag{A2}[cc][cc]{$A_2$}
+%\psfrag{A3}[cc][cc]{$A_3$}
+%\centering
+%\includegraphics[height=3cm]{figures/counting}
+%\caption{Illustration of the counting problem}
+%\label{fig:counting}
+%\end{figure}
+%
+%To illustrate the underlying idea we will use a simple example involving $N=3$ different stations choosing among $B=4$ different slots.
+%We assume that the number of stations deterministically choosing its transmission slot is $d=0$ and we are interested in computing the probability that exactly $\delta=1$ station succeeds.
+%
+%There are a total of $B^N=4^3$ outcomes that are represented as black dots in Fig.~\ref{fig:counting}.
+%Each outcome is equally likely with probability $1/64$.
+%The figure also shows three events $A_1$, $A_2$ and $A_3$.
+%The first event, $A_1$ represents the outcomes in which the first station succeeds.
+%Similarly, the other two events, $A_2$ and $A_3$, represent the outcomes in which station 2 and 3 succeed, respectively.
+%These sets are partially overlapping.
+%Note also that it is impossible that two stations succeed while the third station collides.
+%
+%If we want to compute the probability that exactly one station succeeds, we have to count the outcomes that belong to either $A_1$, $A_2$ or $A_3$ and are not part of the intersections.
+%This is $|A_1|+|A_2|+|A_3|-2(|A_1\cap A_2|+|A_1\cap A_3|+|A_2\cap A_3|)+3(|A_1\cap A_2\cap A_3|)$.
+%In our paper we will use the intermediate values
+% $S(1)=P(A_1)+P(A_2)+P(A_3)$,
+% $S(2)=P(A_1\cap A_2)+P(A_1\cap A_3)+P(A_2\cap A_3)$, and $S(3)=P(A_1\cap A_2\cap A_3)$.
+% The probability that exactly one station succeeds is finally computed  as $S(1)-2S(2)+3S(3)$.
+
+
+% use section* for acknowledgement
+\section*{Acknowledgment}
+
+
+The authors would like to thank Victor Dalmau and Luis Sanabria for their helpful comments.
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{IEEEabrv,my_bib}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+%\begin{thebibliography}{1}
+
+%\bibitem{IEEEhowto:kopka}
+%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+%\end{thebibliography}
+
+% biography section
+%
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+%\begin{IEEEbiography}{Michael Shell}
+%Biography text here.
+%\end{IEEEbiography}
+%
+%% if you will not have a photo at all:
+%\begin{IEEEbiographynophoto}{John Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
+%
+%% insert where needed to balance the two columns on the last page with
+%% biographies
+%%\newpage
+%
+%\begin{IEEEbiographynophoto}{Jane Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
+\end{document}
+

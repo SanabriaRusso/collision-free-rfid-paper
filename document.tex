@@ -486,7 +486,6 @@ height \snellskip\kern-.5em&\multispan#2\hrulefill\cr}
 \thanks{The authors are with Universitat Pompeu Fabra.
 Roc Boronat 138, 08018 Barcelona, Catalunya, Spain.
 E-mail: joan.melia@upf.edu
-This paper has been submitted to an IEEE journal.
 }
 }
 
@@ -543,12 +542,15 @@ This paper has been submitted to an IEEE journal.
 
 
 \begin{abstract}
-In this paper, the problem of assigning channel slots to a number of contending stations is modeled as a Constraint Satisfaction Problem (CSP).
-A learning MAC protocol that uses deterministic backoffs after successful transmissions is used as a decentralized solver for the CSP.
-The convergence process of the solver is modeled by an absorbing Markov chain (MC), and analytical, closed-form expressions for its transition probabilities are derived.
-Using these, the expected number of steps required to reach a solution is found.
-The analysis is validated by means of simulations and the model is extended to account for the presence of channel errors.
-The results are applicable in various resource allocation scenarios in wireless networks.
+The EPC Gen2 RFID technology relies on a random contention protocol to arbitrate the access to the radio channel.
+Because of the simplicity of the RFID platform, the pseudo-random number generator has some limitations that we study in detail.
+In particular, some of the possible outcomes of the generator are much more likely than others.
+As a result, the number of collisions in this technology is relatively high.
+
+We propose to use an improved contention protocol in which an RFID tag keeps using the same backoff value as long as its contention results in a successful transmission, and computes a new backoff value after collisions.
+This solution has already been studied in the context of wireless local area networks.
+In the present letter, we adapt the solution to the RFID technology and present a performance evaluation based on simulation.
+The proposed solution dramatically reduces the time required to identify all the tags, specially in a logistics context in which the contents of a pallet are to be read in different locations (e.g., warehouse, truck and shop).
 
 %\boldmath
 %In this paper we use a Markov Chain to model a simple solver for Decentralized Constrain Satisfaction problems.

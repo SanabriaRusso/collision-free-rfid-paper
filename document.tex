@@ -550,7 +550,7 @@ As a result, the number of collisions in this technology is relatively high.
 We propose to use an improved contention protocol in which an RFID tag keeps using the same backoff value as long as its contention results in a successful transmission, and computes a new backoff value after collisions.
 This solution has already been studied in the context of wireless local area networks.
 In the present letter, we adapt the solution to the RFID technology and present a performance evaluation based on simulation.
-The proposed solution dramatically reduces the time required to identify all the tags, specially in a logistics context in which the contents of a pallet are to be read in different locations (e.g., warehouse, truck and shop).
+The presented solution substantially improves the performance in some scenarios of interest.
 
 %\boldmath
 %In this paper we use a Markov Chain to model a simple solver for Decentralized Constrain Satisfaction problems.
@@ -604,30 +604,36 @@ Medium Access Control, decentralized constraint satisfaction solver, learning MA
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
 
-% \IEEEPARstart{I}{n} this paper we discuss a family of protocols that can be used for radio resource assignment in wireless networks.
-% The problem of assigning resources in a distributed fashion is defined as a Decentralized Constraint Satisfaction (DCS) problem \cite{duffy2011dcs}.
-% We consider a particular solver for this family of problems that works iteratively, in several rounds, to find a solution to the problem.
+\IEEEPARstart{R}{FID} technology makes it possible to wirelessly read passive tags.
+This has several applications in inventory management.
+We are interested in scenarios in which a given set of tags has to be read several times.
+A possible example is a pallets of products that travels from the factory to a warehouse, and from there to a shop.
+The goods are checked at the entry points and exit points of each location, and also when they are loaded and unloaded to and from the truck.
+The same pallet is read several times.
+There is interest on speeding up the reading of the whole pallet as it reduces the time needed for loading and unloading the trucks.
 
-% The solver performs a stochastic search until it converges to a solution.
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
+Another examples is a smart shelf in a shop that has the capability to interact with the customers.
+The idea is that when the customer picks a product from the self, interactive content related to that particular product is displayed on the screen.
+To achieve this goal, each product has a tag.
+A reader continuously reads all the tags in the shelf. 
+When it detects that one of the tags is no longer on the shelf, it displays the information of that product.
+The goal in this scenario is to minimize the reaction time of the system to the action of the customer.
 
-\IEEEPARstart{T}{his} is a very nice introduction introducing the topics that will be covered in the paper. And this \cite{barcelo2008lba} is a reference to the best paper ever written..
+The process of reading a set of tags is governed by a random medium access protocol.
+It is possible that during the reading process, two tags transmit simultaneously and therefore they are not read.
+To cope with this possibility, the reader performs several reads to reduce the chances that some tags left unread.
+In this paper we note that the random reading process needs to be carried out only once. 
+Subsequent reads can be totally deterministic and consist of a single round.
 
-\section{Keeping the backoff value after successes}
+\section{Related Work}
+\cite{barcelo2008lba} 
+\cite{melia2011pia}
 
-Isn't Fig. \ref{fig:csma_eca_compact} beautiful?
+\section{RFID Medium Access Control}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=2.5in]{figures/csma_eca_compact}
-  \caption{CSMA/ECA contention}
-  \label{fig:csma_eca_compact}
-\end{figure}
+\section{Enhanced Collision Avoidance in RFID}
 
-\section{Simulation results}
-
-\section{Multiple Readings Scenario}
+\section{Simulation Results}
 
 \section{Conclusion}
 
